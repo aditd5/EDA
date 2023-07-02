@@ -21,5 +21,17 @@ public class EpcomMovement : MonoBehaviour
     {
         float hInput = Input.GetAxis("Horizontal");
         body.velocity = new Vector2(hInput * speed, body.velocity.y);
+
+        if(Input.GetKey(KeyCode.UpArrow) && landed)
+        {
+            animator.SetBool("shooting", false);
+            Shoot();
+        }
+    }
+
+     private void Shoot()
+    {
+        body.velocity = new Vector2(body.velocity.x, epcom_shot);
+        animator.SetTrigger("epcom_shot");
     }
 }
